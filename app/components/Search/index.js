@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { API_URL } from "@/app/utils/constants";
 
 const Search = ({ handleSearch, handleReset }) => {
-	const [formInputs, setFormInputs] = useState({});
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const handleInputs = (e) => {
-		let { name, value } = e.target;
-		setFormInputs({ ...formInputs, [name]: value });
+		let { value } = e.target;
+
 		setSearchTerm(value);
 	};
 

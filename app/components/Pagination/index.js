@@ -1,11 +1,18 @@
 import React from "react";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const populatePageNumbers = (postsPerPage, totalPosts) => {
 	const pageNumbers = [];
 
 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
 		pageNumbers.push(i);
 	}
+
+	return pageNumbers;
+};
+
+const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+	const pageNumbers = populatePageNumbers(postsPerPage, totalPosts);
+
 	return (
 		<nav>
 			<ul>

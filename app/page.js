@@ -1,9 +1,11 @@
 "use client";
+
 import { useEffect, useState } from "react";
+
 import Movie from "./Movie";
 import Search from "./components/Search";
-import { getPopularMovies, searchMovie } from "./utils/api/moviesAPI";
 import Pagination from "./components/Pagination";
+import { getPopularMovies, searchMovie } from "./utils/api/moviesAPI";
 
 const Home = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -34,12 +36,10 @@ const Home = () => {
 		fetchPopularMovies();
 	}, []);
 
-	// Get current movies
-	const indexOfLastMovie = currentPage * moviesPerPage; // 1 * 20 = 20
-	const indexOfFirstMovie = indexOfLastMovie - moviesPerPage; // 20 - 20 = 0
+	const indexOfLastMovie = currentPage * moviesPerPage;
+	const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
 	const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
-	// Change Page
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	return (
