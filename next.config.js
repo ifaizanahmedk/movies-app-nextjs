@@ -12,9 +12,6 @@ const nextConfig = {
 	// 	apiKey: process.env.API_KEY,
 	// 	// staticFolder: "/static",
 	// },
-	experimental: {
-		appDir: true,
-	},
 	images: {
 		domains: ["image.tmdb.org"],
 	},
