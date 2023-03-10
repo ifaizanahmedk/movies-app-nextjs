@@ -1,27 +1,29 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import Movie from './Movie';
 import Search from './components/Search';
 import Pagination from './components/Pagination';
 
-import { getPopularMovies, searchMovie } from './utils/api/moviesAPI';
+import { searchMovie } from './utils/api/moviesAPI';
+import { fetchInitialData } from './actions/movies';
 
-const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+const Home = ({ movies, isLoading, error, fetchInitialData }) => {
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
 
-  const fetchPopularMovies = async () => {
-    setIsLoading(true);
+  // const fetchPopularMovies = async () => {
+  //   setIsLoading(true);
 
-    let popularMovies = await getPopularMovies();
-    setMovies(popularMovies.results);
+  //   let popularMovies = await getPopularMovies();
+  //   setMovies(popularMovies.results);
 
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   const searchMovies = async (searchTerm) => {
     let searchedMovies = await searchMovie(searchTerm);
@@ -29,12 +31,14 @@ const Home = () => {
   };
 
   const resetSearchFilter = () => {
-    fetchPopularMovies();
+    // fetchPopularMovies();
+    fetchInitialData();
     setCurrentPage(1);
   };
 
   useEffect(() => {
-    fetchPopularMovies();
+    // fetchPopularMovies();
+    fetchInitialData();
   }, []);
 
   const indexOfLastMovie = currentPage * moviesPerPage;
@@ -50,6 +54,8 @@ const Home = () => {
       </div>
       {isLoading ? (
         <div>Loading...</div>
+      ) : error ? (
+        <div>Error: {error}</div>
       ) : (
         <>
           <div className="container mx-auto">
@@ -78,4 +84,15 @@ const Home = () => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movies: state.movies.movies,
+  isLoading: state.movies.isLoading,
+  error: state.movies.error
+});
+
+const mapDispatchToProps = {
+  fetchInitialData
+};
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);
 export default Home;
