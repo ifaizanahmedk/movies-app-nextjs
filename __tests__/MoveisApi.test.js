@@ -1,6 +1,6 @@
-import { getPopularMovies } from '../app/utils/api/moviesAPI';
+import { getPopularMovies } from '@/utils/api/moviesAPI';
 
-import { API_URL } from '../app/utils/constants';
+import { API_URL } from '@/utils/constants';
 
 describe('getPopularMovies', () => {
   const getUrl = `${API_URL}/movie/popular?api_key=${process.env.apiKey}`;

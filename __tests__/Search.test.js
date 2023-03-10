@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Search from '../app/components/Search';
+import Search from '@/components/Search';
 
 describe('Search component', () => {
   it('renders without errors', () => {
