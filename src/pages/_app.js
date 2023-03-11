@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Provider } from 'react-redux';
 
-import store from '@/redux/store';
-
 import '@/styles/globals.css';
+import store from '@/redux/store';
 import Navbar from '@/components/Navbar';
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Navbar />
@@ -13,3 +13,5 @@ export default function App({ Component, pageProps }) {
     </Provider>
   );
 }
+
+export default App;

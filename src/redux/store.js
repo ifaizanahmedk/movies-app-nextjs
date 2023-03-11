@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-
 import moviesReducer from './reducers/movies';
 
 const preloadedState = {};
@@ -12,9 +11,9 @@ const rootReducers = combineReducers({
 });
 
 const store = configureStore({
-  devTools:true,
+  devTools: true,
   reducer: rootReducers,
-  middleware:[thunk],
+  middleware: [thunk],
   preloadedState
 });
 
