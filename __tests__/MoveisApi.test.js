@@ -1,11 +1,11 @@
-import { getPopularMovies } from '../src/utils/api/moviesAPI';
+import { getDataFromUrl } from '@/utils/helpers';
 
-import { API_URL } from '../src/utils/constants';
+import { API_URL } from '@/utils/constants';
 
-describe('getPopularMovies', () => {
+describe('getDataFromUrl', () => {
   const getUrl = `${API_URL}/movie/popular?api_key=${process.env.apiKey}`;
 
   it('throws an error if the URL is invalid', async () => {
-    await expect(getPopularMovies('invalid-url')).rejects.toThrow();
+    await expect(getDataFromUrl('invalid-url')).rejects.toThrow();
   });
 });
