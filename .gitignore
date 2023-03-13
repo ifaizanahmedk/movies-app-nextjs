@@ -20,7 +20,6 @@
 .history
 .vscode
 *.pem
-.history
 
 # debug
 npm-debug.log*
