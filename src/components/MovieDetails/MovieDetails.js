@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -5,6 +6,7 @@ import Image from 'next/image';
 import { IMAGE_PATH } from '@/utils/constants';
 
 function MovieDetails() {
+  const [movie, setMovie] = useState({});
   const router = useRouter();
   const { id } = router.query;
 
@@ -12,8 +14,11 @@ function MovieDetails() {
   const isLoading = useSelector((state) => state.movies.isLoading);
   const error = useSelector((state) => state.movies.error);
 
-  const movieData = movies.find((movie) => movie.id === Number(id));
-  const { title, release_date, runtime, status, backdrop_path, overview } = movieData;
+  useEffect(() => {
+    setMovie(movies.find((mov) => mov.id === Number(id)));
+  }, []);
+
+  const { title, release_date, runtime, status, backdrop_path, overview } = movie;
 
   if (isLoading) {
     return <div className="container mx-auto">Loading...</div>;
